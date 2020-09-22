@@ -1,0 +1,5 @@
+<% @merchant.discounts.each do |discount| %>
+  <div id="discount-<%= discount.id %>">
+  <p><%= discount.name %> - <%= button_to "Remove Discount", "/merchants/discounts/#{discount.id}", method: :delete %></p>
+  </div>
+<% end %>

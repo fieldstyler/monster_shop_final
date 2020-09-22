@@ -32,6 +32,15 @@ class Cart
     grand_total
   end
 
+  def grand_total_with_discount
+    grand_total = 0.0
+    @contents.each do |item_id, quantity|
+      ItemDiscount.find()
+      grand_total += Item.find(item_id).price * quantity * (1 - (Discount.find().pluck(:percentage)))
+    end
+    grand_total_with_discount
+  end
+
   def count_of(item_id)
     @contents[item_id.to_s]
   end
