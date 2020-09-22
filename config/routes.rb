@@ -39,6 +39,7 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :new, :create, :edit, :update, :destroy]
     put '/items/:id/change_status', to: 'items#change_status'
     get '/orders/:id/fulfill/:order_item_id', to: 'orders#fulfill'
+    # patch "/merchant/discounts", to: "merchant/discounts#post"
     resources :discounts
   end
 
@@ -49,5 +50,7 @@ Rails.application.routes.draw do
     patch '/orders/:id/ship', to: 'orders#ship'
   end
 
-  delete '/merchants/discounts/:discount_id', to: "merchant/discounts#destroy"
+  delete '/merchant/discounts/:discount_id', to: "merchant/discounts#destroy"
+  get "/merchant/discounts/:discount_id/edit", to: "merchant/discounts#edit"
+  patch "/merchant/discounts", to: "merchant/discounts#update"
 end

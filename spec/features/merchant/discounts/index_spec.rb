@@ -47,5 +47,21 @@ RSpec.describe "Merchant Discounts Index Page" do
       expect(current_path).to eq('/merchant/discounts')
       expect(page).to_not have_content(@tenofffive.name)
     end
+
+    it 'displays an update discount button next to each discount. When you click the button, it brings you to a page with prepopulated info that you can submit' do
+      visit '/merchant/discounts'
+      within "#discount-#{@tenofffive.id}" do
+        click_on "Update Discount"
+      end
+      expect(current_path).to eq("/merchant/discounts/#{@tenofffive.id}/edit")
+      fill_in :name, with: "20 percent off 10 items or more"
+      fill_in :percent_off, with: 20
+      fill_in :minimum_items, with: 10
+
+      click_on "Submit Updates"
+      expect(current_path).to eq("/merchant/discounts")
+
+      expect(page).to have_content("20 percent off 10 items or more")
+    end
   end
 end
