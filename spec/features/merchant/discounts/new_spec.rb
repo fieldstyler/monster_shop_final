@@ -47,7 +47,18 @@ RSpec.describe "Merchant Discounts Index Page" do
 
       click_on "Create Discount"
       expect(current_path).to eq('/merchant/discounts/new')
-      expect(page).to have_content("Please fill in all fields to create discount")
+      expect(page).to have_content("Please fill in all fields completely and with correct input to create discount. Percent Off and Minimum Items must be integers.")
+    end
+
+    it 'cant create a new discount with incorrect input type' do
+      visit '/merchant/discounts/new'
+      fill_in :name, with: ""
+      fill_in :percent_off, with: "whattup"
+      fill_in :minimum_items, with: 10
+
+      click_on "Create Discount"
+      expect(current_path).to eq('/merchant/discounts/new')
+      expect(page).to have_content("Please fill in all fields completely and with correct input to create discount. Percent Off and Minimum Items must be integers.")
     end
   end
 end
