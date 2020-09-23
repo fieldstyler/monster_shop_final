@@ -63,5 +63,22 @@ RSpec.describe "Merchant Discounts Index Page" do
 
       expect(page).to have_content("20 percent off 10 items or more")
     end
+
+    it 'has a create button and when you click it takes you to a form where you create your discount, hit submit, and returns to discount index' do
+      visit '/merchant/discounts'
+      expect(page).to have_button("Create Discount")
+      click_on "Create Discount"
+      expect(current_path).to eq("/merchant/discounts/new")
+
+      fill_in :name, with: "50 percent off 30 items or more"
+      fill_in :percent_off, with: 50
+      fill_in :minimum_items, with: 30
+
+      click_on "Create Discount"
+
+      expect(current_path).to eq("/merchant/discounts")
+      expect(page).to have_content("50 percent off 30 items or more")
+
+    end
   end
 end

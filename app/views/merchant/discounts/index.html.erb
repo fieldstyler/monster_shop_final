@@ -3,3 +3,4 @@
   <p><%= discount.name %> - <%= button_to "Update Discount", "/merchant/discounts/#{discount.id}/edit", method: :get %> - <%= button_to "Remove Discount", "/merchant/discounts/#{discount.id}", method: :delete %></p>
   </div>
 <% end %>
+<%= button_to "Create Discount", "/merchant/discounts/new", method: :create %>
