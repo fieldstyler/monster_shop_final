@@ -11,6 +11,7 @@
   <body>
     <nav>
       <%= link_to 'Home', root_path %>
+      
       <%= link_to 'Register', registration_path unless current_user %>
       <%= link_to 'Log In', login_path unless current_user %>
       <br>
