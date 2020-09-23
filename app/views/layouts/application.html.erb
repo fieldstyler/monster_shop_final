@@ -11,34 +11,25 @@
   <body>
     <nav>
       <%= link_to 'Home', root_path %>
-      <br>
       <%= link_to 'Register', registration_path unless current_user %>
-      <br>
       <%= link_to 'Log In', login_path unless current_user %>
       <br>
       <% if current_user %>
         <%= link_to 'Log Out', logout_path %>
-        <br>
         <%= link_to 'Profile', profile_path %>
-        <br>
         <p>Logged in as <%= current_user.name %></p>
-        <br>
         <% if current_merchant_user? %>
           <%= link_to 'Merchant Dashboard', merchant_dashboard_path %>
-          <br>
           <%= link_to 'My Discounts', merchant_discounts_path %>
           <br>
         <% elsif current_admin? %>
           <%= link_to 'Admin Dashboard', admin_dashboard_path %>
-          <br>
           <%= link_to 'Users', '/admin/users' %>
           <br>
         <% end %>
       <% end %>
       <%= link_to 'Merchants', '/merchants' %>
-      <br>
       <%= link_to 'Items', '/items' %>
-      <br>
       <%= link_to "Cart: #{cart.count}", cart_path unless current_user && current_admin?%>
       <br>
     </nav>
