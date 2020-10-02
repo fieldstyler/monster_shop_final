@@ -40,7 +40,7 @@ Rails.application.routes.draw do
     put '/items/:id/change_status', to: 'items#change_status'
     get '/orders/:id/fulfill/:order_item_id', to: 'orders#fulfill'
     # patch "/merchant/discounts", to: "merchant/discounts#post"
-    resources :discounts
+    resources :discounts, only: [:index, :new, :edit, :create, :show, :destroy, :update]
   end
 
   namespace :admin do
@@ -50,8 +50,5 @@ Rails.application.routes.draw do
     patch '/orders/:id/ship', to: 'orders#ship'
   end
 
-  delete '/merchant/discounts/:discount_id', to: "merchant/discounts#destroy"
-  get "/merchant/discounts/:discount_id/edit", to: "merchant/discounts#edit"
-  patch "/merchant/discounts", to: "merchant/discounts#update"
   post "/merchant/discounts/new", to: "merchant/discounts#new"
 end

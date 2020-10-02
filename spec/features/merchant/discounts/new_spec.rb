@@ -1,4 +1,4 @@
-require 'rails_helper'
+# require 'rails_helper'
 
 RSpec.describe "Merchant Discounts Index Page" do
   before :each do
@@ -47,7 +47,7 @@ RSpec.describe "Merchant Discounts Index Page" do
 
       click_on "Create Discount"
       expect(current_path).to eq('/merchant/discounts/new')
-      expect(page).to have_content("Please fill in all fields completely and with correct input to create discount. Percent Off and Minimum Items must be integers.")
+      expect(page).to have_content("Name can't be blank")
     end
 
     it 'cant create a new discount with incorrect input type' do
@@ -58,7 +58,7 @@ RSpec.describe "Merchant Discounts Index Page" do
 
       click_on "Create Discount"
       expect(current_path).to eq('/merchant/discounts/new')
-      expect(page).to have_content("Please fill in all fields completely and with correct input to create discount. Percent Off and Minimum Items must be integers.")
+      expect(page).to have_content("Name can't be blank and Percent off is not a number")
     end
   end
 end

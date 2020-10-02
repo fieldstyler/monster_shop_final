@@ -21,6 +21,7 @@ class Merchant::DiscountsController < Merchant::BaseController
       redirect_to "/merchant/discounts"
     elsif
       flash[:alert] = "Please fill in all fields completely and with correct input to create discount. Percent Off and Minimum Items must be integers."
+      flash[:alert] = @discount.errors.full_messages.to_sentence #from Brian
       redirect_to "/merchant/discounts/new"
     end
   end
